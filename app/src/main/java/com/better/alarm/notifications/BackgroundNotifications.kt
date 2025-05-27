@@ -64,6 +64,7 @@ class BackgroundNotifications(
         is Event.StartWakingEvent,
         is Event.PauseEvent,
         is Event.ResumeEvent,
+        is Event.MustWakeEvent,
         is Event.DemuteEvent,
         is Event.MuteEvent,
         is Event.NullEvent -> Unit

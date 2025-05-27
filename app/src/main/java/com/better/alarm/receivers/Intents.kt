@@ -57,6 +57,9 @@ object Intents {
   /** Alarm sound expired */
   const val ACTION_SOUND_EXPIRED = BuildConfig.APPLICATION_ID + ".ACTION_SOUND_EXPIRED"
 
+  /** Alarm sound expired */
+  const val ACTION_MUST_WAKE = BuildConfig.APPLICATION_ID + ".ACTION_MUST_WAKE"
+
   const val EXTRA_ID = "intent.extra.alarm"
   const val EXTRA_TYPE = "intent.extra.type"
   const val TYPE_NORMAL_ALARM= "NORMAL_ALARM"
