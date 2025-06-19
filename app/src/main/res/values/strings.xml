@@ -74,9 +74,9 @@
         <item>120 seconds</item>
     </string-array>
     <string name="fade_in_summary">Fade-in duration is <xliff:g id="seconds">%d</xliff:g> seconds</string>
-    <string name="must_wake_summary">Must-wake deadline is set to <xliff:g id="minute">%d</xliff:g> minutes.</string>
+    <string name="must_wake_summary">Must-wake deadline is set to <xliff:g id="minute">%d</xliff:g> minutes. After that the alarm volume will be set to max.</string>
     <string name="fade_in_off_summary">Fade-in is switched off</string>
-    <string name="must_wake_off_summary">Must-wake feature is disabled. If turn on, the auto-silence will be disabled and the alarm volume will be set to max after the selected time</string>
+    <string name="must_wake_off_summary">Must-wake feature is disabled. </string>
     <string-array name="alarm_set_short">
         <item>Less than a minute from now</item>
         <item><xliff:g example="2 days" id="DAYS">%1$s</xliff:g></item>
@@ -258,4 +258,5 @@
     <string name="vision_enable_person_leave_dismiss_title">Enable \"Person leave dismiss\" feature</string>
     <string name="vision_enable_person_leave_dismiss_summary">If a person is detected at the start, you can simply walk away and the alarm will automatically dismiss after 10 seconds.\nHowever, if person detection is intermittent, the alarm might be dismissed unexpectedly.</string>
     <string name="must_wake_title">Must wake deadline</string>
+    <string name="auto_silence_disabled_by_must_wake_mode_summary">This feature is disabled by the \"must wake deadline\" feature.\nTurn off \"must wake deadline\" to enable this feature.</string>
 </resources>
