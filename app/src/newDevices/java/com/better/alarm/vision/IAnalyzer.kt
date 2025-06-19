@@ -22,10 +22,8 @@ import com.google.mediapipe.tasks.vision.handlandmarker.HandLandmarkerResult
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.BehaviorSubject
-import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
 import java.text.SimpleDateFormat
-import java.util.Date
 import java.util.Locale
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
@@ -92,8 +90,8 @@ class IAnalyzer (
   }
 
   // debug
-  private var isPeekFinish = false
-  private var peekResult = STATUS_UNKNOWN
+  private var isPersonDetectionResultChanged = false
+  private var personDetectionResult = STATUS_UNKNOWN
 
   init {
     headDetectorV10 = DetectorV10(context, HEAD_MODEL_PATH, HeadDetectorListener(), {
@@ -141,9 +139,9 @@ class IAnalyzer (
       matrix, true
     )
     // debug
-    if(isPeekFinish) {
-      savePeekResultToGallery(rotatedBitmap, peekResult)
-      isPeekFinish = false
+    if(isPersonDetectionResultChanged) {
+      savePeekResultToGallery(rotatedBitmap, personDetectionResult)
+      isPersonDetectionResultChanged = false
     }
 
     val mpImage = BitmapImageBuilder(rotatedBitmap).build()
@@ -182,17 +180,13 @@ class IAnalyzer (
         if (it == STATUS_UNKNOWN) return@subscribe
         if (it == STATUS_DETECTED) {
           logger.debug { "onDetectAction" }
-          if  (state == DetectionState.PEEKING) {
-            peekResult = STATUS_DETECTED
-            isPeekFinish = true
-          }
+          personDetectionResult = STATUS_DETECTED
+          isPersonDetectionResultChanged = true
           onDetectAction()
         } else {
           logger.debug { "onTimeoutAction" }
-          if (state == DetectionState.PEEKING) {
-            peekResult = STATUS_NOT_DETECTED
-            isPeekFinish = true
-          }
+          personDetectionResult = STATUS_NOT_DETECTED
+          isPersonDetectionResultChanged = true
           onTimeoutAction()
         }
       }
