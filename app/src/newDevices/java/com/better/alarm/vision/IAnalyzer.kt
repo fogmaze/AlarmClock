@@ -182,14 +182,18 @@ class IAnalyzer (
         if (it == STATUS_UNKNOWN) return@subscribe
         if (it == STATUS_DETECTED) {
           logger.debug { "onDetectAction" }
+          if  (state == DetectionState.PEEKING) {
+            peekResult = STATUS_DETECTED
+            isPeekFinish = true
+          }
           onDetectAction()
-          peekResult = STATUS_DETECTED
-          isPeekFinish = true
         } else {
           logger.debug { "onTimeoutAction" }
+          if (state == DetectionState.PEEKING) {
+            peekResult = STATUS_NOT_DETECTED
+            isPeekFinish = true
+          }
           onTimeoutAction()
-          peekResult = STATUS_NOT_DETECTED
-          isPeekFinish = true
         }
       }
       compositeDisposable.add(disposable)
