@@ -78,16 +78,16 @@ val acraEmail =
 android {
   compileSdk = 33
   defaultConfig {
-    versionCode = 31601
-    versionName = "3.16.01"
-    applicationId = "com.better.alarm"
+    versionCode = 40000
+    versionName = "4.0.0"
+    applicationId = "com.fogmaze.alarm"
     targetSdk = 33
-    testApplicationId = "com.better.alarm.test"
+    testApplicationId = "com.fogmaze.alarm.test"
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     multiDexEnabled = true
   }
-  namespace = "com.better.alarm"
-  testNamespace = "com.better.alarm.debug"
+  namespace = "com.fogmaze.alarm"
+  testNamespace = "com.fogmaze.alarm.debug"
   signingConfigs {
     create("release") {
       storeFile = file("upload-keystore.jks")
@@ -117,7 +117,7 @@ android {
   productFlavors {
     create("develop") {
       dimension = "default"
-      applicationId = "com.better.alarm"
+      applicationId = "com.fogmaze.alarm"
     }
     create("premium") {
       dimension = "default"

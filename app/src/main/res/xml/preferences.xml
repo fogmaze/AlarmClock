@@ -20,7 +20,7 @@
         android:key="preference_category_sound_key"
         android:title="@string/preference_category_sound"
         app:iconSpaceReserved="false">
-        <com.better.alarm.ui.settings.VolumePreference
+        <com.fogmaze.alarm.ui.settings.VolumePreference
             android:dialogTitle="@string/alarm_volume_title"
             android:key="volume_preference"
             android:persistent="false"
@@ -165,7 +165,7 @@
             android:title="@string/vision_enable_person_leave_dismiss_title"
             android:summary="@string/vision_enable_person_leave_dismiss_summary"
             app:iconSpaceReserved="false" />
-        <com.better.alarm.ui.settings.VisionBehaviorPreference
+        <com.fogmaze.alarm.ui.settings.VisionBehaviorPreference
             android:defaultValue="{&quot;items&quot;:[]}"
             android:key="vision_behavior"
             android:title="Set Behavior"

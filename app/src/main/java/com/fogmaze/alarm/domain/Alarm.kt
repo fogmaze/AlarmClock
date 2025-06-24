@@ -1,0 +1,32 @@
+package com.fogmaze.alarm.domain
+
+import com.fogmaze.alarm.data.AlarmValue
+import com.fogmaze.alarm.data.Alarmtone
+
+interface Alarm {
+  fun enable(enable: Boolean)
+
+  fun snooze()
+
+  fun snooze(hourOfDay: Int, minute: Int)
+
+  fun dismissWithCheck()
+
+  fun dismiss()
+
+  fun requestSkip()
+
+  fun isSkipping(): Boolean
+
+  fun deleteAutoSilence()
+
+  fun delete()
+
+  /** Change something and commit */
+  fun edit(func: AlarmValue.() -> AlarmValue)
+
+  val id: Int
+  val labelOrDefault: String
+  val alarmtone: Alarmtone
+  val data: AlarmValue
+}
