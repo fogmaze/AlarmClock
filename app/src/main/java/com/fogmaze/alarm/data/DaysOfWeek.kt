@@ -1,7 +1,7 @@
-package com.better.alarm.data
+package com.fogmaze.alarm.data
 
 import android.content.Context
-import com.better.alarm.R
+import com.fogmaze.alarm.R
 import java.text.DateFormatSymbols
 import java.util.Calendar
 import kotlinx.serialization.Serializable

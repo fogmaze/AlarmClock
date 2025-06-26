@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.better.alarm.data.contentprovider;
+package com.fogmaze.alarm.data.contentprovider;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -26,8 +26,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
-import com.better.alarm.BuildConfig;
-import com.better.alarm.util.Preconditions;
+import com.fogmaze.alarm.BuildConfig;
+import com.fogmaze.alarm.util.Preconditions;
 
 public class AlarmProvider extends ContentProvider {
   private AlarmDatabaseHelper mOpenHelper;

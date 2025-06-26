@@ -1,11 +1,11 @@
-package com.better.alarm.data.contentprovider
+package com.fogmaze.alarm.data.contentprovider
 
 import android.content.ContentResolver
 import android.content.ContentUris
 import android.database.Cursor
-import com.better.alarm.data.AlarmValue
-import com.better.alarm.data.Alarmtone
-import com.better.alarm.data.DaysOfWeek
+import com.fogmaze.alarm.data.AlarmValue
+import com.fogmaze.alarm.data.Alarmtone
+import com.fogmaze.alarm.data.DaysOfWeek
 import java.util.*
 
 interface DatabaseQuery {

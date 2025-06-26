@@ -1,8 +1,8 @@
-package com.better.alarm.data.contentprovider
+package com.fogmaze.alarm.data.contentprovider
 
 import android.net.Uri
 import android.provider.BaseColumns
-import com.better.alarm.BuildConfig
+import com.fogmaze.alarm.BuildConfig
 
 // ////////////////////////////
 // Column definitions

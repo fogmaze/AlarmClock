@@ -21,12 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.better.alarm.data.stores
+package com.fogmaze.alarm.data.stores
 
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
-import com.better.alarm.logger.Logger
+import com.fogmaze.alarm.logger.Logger
 import io.reactivex.Observable
 
 /** Implementation of [PrimitiveDataStoreFactory] which uses [SharedPreferences] to store values. */

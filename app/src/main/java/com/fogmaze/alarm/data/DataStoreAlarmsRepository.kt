@@ -1,11 +1,11 @@
-package com.better.alarm.data
+package com.fogmaze.alarm.data
 
 import android.os.Looper
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.DataStoreFactory
 import androidx.datastore.core.Serializer
 import androidx.datastore.core.handlers.ReplaceFileCorruptionHandler
-import com.better.alarm.logger.Logger
+import com.fogmaze.alarm.logger.Logger
 import java.io.File
 import java.io.InputStream
 import java.io.OutputStream

@@ -1,7 +1,7 @@
-package com.better.alarm.data
+package com.fogmaze.alarm.data
 
 import android.provider.Settings
-import com.better.alarm.data.Alarmtone.Companion.defaultAlarmAlertUri
+import com.fogmaze.alarm.data.Alarmtone.Companion.defaultAlarmAlertUri
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

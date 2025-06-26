@@ -1,4 +1,4 @@
-package com.better.alarm.data
+package com.fogmaze.alarm.data
 
 interface DatastoreMigration {
   fun drop()

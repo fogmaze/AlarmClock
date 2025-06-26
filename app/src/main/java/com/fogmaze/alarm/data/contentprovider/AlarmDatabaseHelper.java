@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.better.alarm.data.contentprovider;
+package com.fogmaze.alarm.data.contentprovider;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

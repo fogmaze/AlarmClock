@@ -1,6 +1,6 @@
-package com.better.alarm.data
+package com.fogmaze.alarm.data
 
-import com.better.alarm.data.stores.RxDataStore
+import com.fogmaze.alarm.data.stores.RxDataStore
 
 /** Repository for [AlarmValue] with an active record interface. */
 interface AlarmsRepository {

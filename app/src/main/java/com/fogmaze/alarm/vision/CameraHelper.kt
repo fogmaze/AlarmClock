@@ -1,4 +1,4 @@
-package com.better.alarm.vision
+package com.fogmaze.alarm.vision
 
 import android.content.ContentValues
 import android.content.Context
@@ -14,8 +14,8 @@ import androidx.camera.core.ImageCapture.FLASH_MODE_ON
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
-import com.better.alarm.bootstrap.globalLogger
 import io.reactivex.subjects.BehaviorSubject
+import com.fogmaze.alarm.bootstrap.globalLogger
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.concurrent.ExecutorService
