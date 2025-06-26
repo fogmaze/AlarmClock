@@ -31,6 +31,7 @@ class AlertServicePusher(store: Store, context: Context, wm: WakeLockManager, lo
             is Event.PauseEvent -> Intent(Intents.ALARM_ALERT_PAUSE_ACTION)
             is Event.ResumeEvent -> Intent(Intents.ALARM_ALERT_RESUME_ACTION)
             is Event.StartWakingEvent -> Intent(Intents.ALARM_ALERT_START_WAKING_ACTION)
+            is Event.MustWakeEvent -> Intent(Intents.ACTION_MUST_WAKE)
             is Event.SnoozedEvent -> null
             is Event.CheckEvent -> null
             is Event.Autosilenced -> null

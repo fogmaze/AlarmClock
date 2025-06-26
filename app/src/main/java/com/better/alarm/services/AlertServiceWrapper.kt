@@ -5,6 +5,7 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
+import android.media.AudioManager
 import android.os.Build
 import android.os.Vibrator
 import android.telephony.PhoneStateListener
@@ -28,6 +29,7 @@ import io.reactivex.Observable
 import io.reactivex.Scheduler
 import java.util.concurrent.Executor
 import org.koin.android.ext.android.inject
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext
 import org.koin.core.module.Module
 import org.koin.core.qualifier.named
@@ -65,6 +67,7 @@ class AlertServiceWrapper : Service() {
             fadeInTimeInMillis = get<Prefs>().fadeInTimeInSeconds.observe().map { it * 1000 },
             inCall = get(named("inCall")),
             scheduler = get(),
+            am = androidContext().getSystemService(Context.AUDIO_SERVICE) as AudioManager,
         )
       }
 
@@ -218,6 +221,7 @@ class AlertServiceWrapper : Service() {
             Intents.ALARM_ALERT_START_WAKING_ACTION -> Event.StartWakingEvent()
             Intents.ALARM_ALERT_PAUSE_ACTION -> Event.PauseEvent()
             Intents.ALARM_ALERT_RESUME_ACTION -> Event.ResumeEvent()
+            Intents.ACTION_MUST_WAKE -> Event.MustWakeEvent(intent.getIntExtra(Intents.EXTRA_ID, -1))
             else -> throw RuntimeException("Unknown action ${intent.action}")
           })
 
@@ -234,6 +238,7 @@ class AlertServiceWrapper : Service() {
             Intents.ACTION_DEMUTE -> START_STICKY
             Intents.ALARM_SNOOZE_ACTION,
             Intents.ALARM_DISMISS_ACTION,
+            Intents.ACTION_MUST_WAKE,
             Intents.ACTION_SOUND_EXPIRED -> START_NOT_STICKY
             else -> throw RuntimeException("Unknown action ${intent.action}")
           }

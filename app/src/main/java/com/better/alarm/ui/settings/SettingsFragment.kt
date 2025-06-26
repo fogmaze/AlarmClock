@@ -204,6 +204,14 @@ class SettingsFragment : PreferenceFragmentCompat() {
           }
     }
 
+    bindListPreference(Prefs.KEY_MUST_WAKE, prefs.mustWake) {
+      summary =
+          when (it) {
+            -1 -> getString(R.string.must_wake_off_summary)
+            else -> getString(R.string.must_wake_summary, it)
+          }
+    }
+
     bindListPreference(Prefs.KEY_THEME, prefs.theme) { summary = entry }
 
     bindListPreference(Prefs.LIST_ROW_LAYOUT, prefs.listRowLayout) { summary = entry }
