@@ -1,4 +1,4 @@
-package com.better.alarm.vision
+package com.fogmaze.alarm.vision
 
 import kotlinx.serialization.Serializable
 

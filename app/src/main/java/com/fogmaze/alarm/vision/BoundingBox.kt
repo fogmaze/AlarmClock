@@ -14,7 +14,7 @@ Credit must be given to: Surendra Maran (https://github.com/surendramaran)
 
 Full License Text: https://creativecommons.org/licenses/by/4.0/
  */
-package com.better.alarm.vision
+package com.fogmaze.alarm.vision
 
 data class BoundingBox(
     val x1: Float,

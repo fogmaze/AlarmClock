@@ -14,13 +14,12 @@ Credit must be given to: Surendra Maran (https://github.com/surendramaran)
 
 Full License Text: https://creativecommons.org/licenses/by/4.0/
  */
-package com.better.alarm.vision
+package com.fogmaze.alarm.vision
 
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.SystemClock
-import com.better.alarm.vision.MetaData.extractNamesFromLabelFile
-import com.better.alarm.vision.MetaData.extractNamesFromMetadata
+import com.fogmaze.alarm.vision.MetaData.extractNamesFromMetadata
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.Interpreter
 import org.tensorflow.lite.gpu.CompatibilityList

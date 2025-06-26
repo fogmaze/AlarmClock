@@ -179,23 +179,22 @@
     <string name="details_no_ringtone_picker">No Ringtone provider found…</string>
     <string name="permissions_external_storage_text">It seems that we cannot play %s, probably because a permission is required. If you want, you can grant the permission. Alternatively, select a different sound. This decision can be changed in System Settings.</string>
     <string name="menu_about_title">About</string>
-    <string name="dialog_about_content">Simple Alarm Clock makes setting an alarm simple.
+    <string name="dialog_about_content">
+        Simple Alarm Clock makes setting an alarm simple.
+        \nIt is an open source project forked from the original Alarm Clock app maintained by Yuriy Kulikov. The previous work of the project is amazing and it is recommended to check it out.
 
-       It is an open source project maintained by software professionals in their free time.
+        \n\nTips:
+        \n· You can change the appearance by pulling up customization drawer
 
-       \n\nTips:
-       \n· You can change the appearance by pulling up customization drawer
+        \n\nNew in this fork:
+        \n· AI based waking process utilizing the rear camera enables remote gesture control and checks whether you are awake or not by detecting faces and body parts.
+        \n· Must-wake mode that will maximize the alarm volume after a given time.
 
-       \n\nNew in this version:
-       \n· Customization drawer
-       \n· New color themes
-       \n· Some internal rework
-       \n· Minor bugfixes
+        \n\n <a href="https://github.com/yuriykulikov/AlarmClock">Learn more of the original Alarm Clock on GitHub</a>
+        \n <a href="https://github.com/fogmaze/AlarmClock">Learn more of the fork on GitHub</a>
 
-       \n· <a href="https://github.com/yuriykulikov/AlarmClock">Learn more on GitHub</a>
-
-       \n\nIf you wish to support us:
-       \n· <a href="https://play.google.com/store/apps/details?id=com.premium.alarm">Install our premium version!</a>
+        \n\nIf you wish to support the original project:
+        \n· <a href="https://play.google.com/store/apps/details?id=com.premium.alarm">Install our premium version!</a>
    </string>
     <string name="dialog_bugreport_faq"><b>Common issues and how to fix them</b>
        \n\n<font color="#FF0000">If there is no sound</font>, please check your device sound settings, and make sure alarms are enabled in "Do not disturb" mode.
@@ -261,4 +260,5 @@
     <string name="vision_model_select_title">Select model for head detection</string>
     <string name="must_wake_title">Must wake deadline</string>
     <string name="auto_silence_disabled_by_must_wake_mode_summary">This feature is disabled by the \"must wake deadline\" feature.\nTurn off \"must wake deadline\" to enable this feature.</string>
+    <string name="lazy_alarm_clock">Lazy Alarm Clock</string>
 </resources>

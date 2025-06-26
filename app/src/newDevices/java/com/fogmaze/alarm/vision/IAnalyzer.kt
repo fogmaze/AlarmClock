@@ -1,11 +1,14 @@
-package com.better.alarm.vision
+package com.fogmaze.alarm.vision
 
+import android.content.ContentValues
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Matrix
 import androidx.camera.core.CameraSelector
+import android.os.Build
+import android.provider.MediaStore
 import androidx.camera.core.ImageAnalysis
-import com.better.alarm.bootstrap.globalLogger
+import com.fogmaze.alarm.bootstrap.globalLogger
 import com.google.mediapipe.framework.image.BitmapImageBuilder
 import com.google.mediapipe.framework.image.MPImage
 import com.google.mediapipe.tasks.components.containers.Landmark
@@ -21,6 +24,8 @@ import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.Subject
+import java.text.SimpleDateFormat
+import java.util.Locale
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.math.sqrt
@@ -92,6 +97,10 @@ class IAnalyzer (
     }
   }
 
+  // debug
+  private var isPersonDetectionResultChanged = false
+  private var personDetectionResult = STATUS_UNKNOWN
+
   init {
     headDetectorV10 = DetectorV10(context, modelPath, HeadDetectorListener(), {
         logger.debug { it }
@@ -140,6 +149,12 @@ class IAnalyzer (
       bitmapBuffer, 0, 0, bitmapBuffer.width, bitmapBuffer.height,
       matrix, true
     )
+    // debug
+    if(isPersonDetectionResultChanged) {
+      savePeekResultToGallery(rotatedBitmap, personDetectionResult)
+      isPersonDetectionResultChanged = false
+    }
+
     val mpImage = BitmapImageBuilder(rotatedBitmap).build()
     synchronized(gestureRecognizerOperatingLock) {
       gestureRecognizer?.detectAsync(mpImage, System.currentTimeMillis())
@@ -180,9 +195,13 @@ class IAnalyzer (
         if (it == STATUS_UNKNOWN) return@subscribe
         if (it == STATUS_DETECTED) {
           logger.debug { "onDetectAction" }
+          personDetectionResult = STATUS_DETECTED
+          isPersonDetectionResultChanged = true
           onDetectAction()
         } else {
           logger.debug { "onTimeoutAction" }
+          personDetectionResult = STATUS_NOT_DETECTED
+          isPersonDetectionResultChanged = true
           onTimeoutAction()
         }
       }
@@ -329,5 +348,33 @@ class IAnalyzer (
     headDetectorV10 = null
     headDetectorExecutor.shutdown()
     compositeDisposable.dispose()
+  }
+
+  private fun savePeekResultToGallery(bitmap: Bitmap, result: Int) {
+    val displayName = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.TAIWAN).format(System.currentTimeMillis()) + "_${result == STATUS_DETECTED}"
+    val contentValues = ContentValues().apply {
+      put(MediaStore.Images.Media.DISPLAY_NAME, "$displayName.jpg")
+      put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+      put(MediaStore.Images.Media.WIDTH, bitmap.width)
+      put(MediaStore.Images.Media.HEIGHT, bitmap.height)
+      put(MediaStore.Images.Media.IS_PENDING, 1)
+
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/AlarmClock")
+      }
+    }
+
+    val imageUri = context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+    imageUri?.let { uri ->
+      context.contentResolver.openOutputStream(uri)?.use { outputStream ->
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+          contentValues.clear()
+          contentValues.put(MediaStore.Images.Media.IS_PENDING, 0)
+          context.contentResolver.update(uri, contentValues, null, null)
+        }
+      }
+    }
   }
 }
