@@ -258,4 +258,5 @@
     <string name="vision_enable_person_leave_dismiss_summary">If a person is detected at the start, you can simply walk away and the alarm will automatically dismiss after 10 seconds.\nHowever, if person detection is intermittent, the alarm might be dismissed unexpectedly.</string>
     <string name="must_wake_title">Must wake deadline</string>
     <string name="auto_silence_disabled_by_must_wake_mode_summary">This feature is disabled by the \"must wake deadline\" feature.\nTurn off \"must wake deadline\" to enable this feature.</string>
+    <string name="lazy_alarm_clock">Lazy Alarm Clock</string>
 </resources>
