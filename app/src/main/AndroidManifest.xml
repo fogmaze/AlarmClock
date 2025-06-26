@@ -48,7 +48,7 @@
         android:fullBackupOnly="true"
         android:icon="@mipmap/ic_launcher"
         android:installLocation="internalOnly"
-        android:label="@string/simple_alarm_clock">
+        android:label="@string/lazy_alarm_clock">
         <activity
             android:name=".ui.settings.VisionWakingHelpActivity"
             android:screenOrientation="portrait"
