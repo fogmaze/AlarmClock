@@ -1,5 +1,5 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![GitHub release](https://img.shields.io/github/v/release/fogmaze/AlarmClock)](https://github.com/fogmaze/AlarmClock/releases)
+[![GitHub release](https://img.shields.io/github/v/release/fogmaze/AlarmClock)](https://github.com/fogmaze/AlarmClock/releases/latest)
 
 # Lazy alarm clock
 Lazy Alarm Clock is a fork of Simple Alarm Clock. Since now it's not that simple so I changed the name.
@@ -14,10 +14,10 @@ The application code is branched from AOSP and is open source. Additional featur
 
 # Download & Install
 Since iOS is not friendly to me, and so am I. There is only android version. You con download it directly from the following 
-📥 [Download Link](https://github.com/fogmaze/AlarmClock/releases/latest).
+📥 [Download Link](https://github.com/fogmaze/AlarmClock/releases/latest/download/lazyclock-release.apk).
 After download the apk file, don't forget to install it in your phone by simply open it. When it's all done, it is recommended to delete the apk file since it is a little big.
 <p align="center">
-  <a href="https://github.com/fogmaze/AlarmClock/releases/latest">
+  <a href="https://github.com/fogmaze/AlarmClock/releases/latest/download/lazyclock-release.apk">
     <img src="https://img.shields.io/badge/📥 Download latest release-blue?style=for-the-badge" alt="Download latest release">
   </a>
 </p>
