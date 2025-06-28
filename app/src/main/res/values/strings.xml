@@ -261,4 +261,8 @@
     <string name="must_wake_title">Must wake deadline</string>
     <string name="auto_silence_disabled_by_must_wake_mode_summary">This feature is disabled by the \"must wake deadline\" feature.\nTurn off \"must wake deadline\" to enable this feature.</string>
     <string name="lazy_alarm_clock">Lazy Alarm Clock</string>
+    <string name="camera_test_wait_instruct">AI model loading might take some time</string>
+    <string name="vision_tts_summary">Report status vocally in the waking process.</string>
+    <string name="camera_test">Camera Test</string>
+    <string name="vision_waking_hand_landmark_test_fail_message">The AI model just doesn’t get along with your device — no idea why it’s not working right. I feel sorry for you.</string>
 </resources>

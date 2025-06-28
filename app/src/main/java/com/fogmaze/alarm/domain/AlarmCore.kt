@@ -576,6 +576,10 @@ class AlarmCore(
         }
       }
 
+      override fun onCheck() {
+        stateMachine.transitionTo(check)
+      }
+
       override fun exit(reason: Event?) {
         removeAlarm()
         if (reason !is Fired) {
