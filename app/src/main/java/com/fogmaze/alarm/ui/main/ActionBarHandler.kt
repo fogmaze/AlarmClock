@@ -251,7 +251,7 @@ class ActionBarHandler(
     val sharedPref = context.getSharedPreferences("update", Context.MODE_PRIVATE)
     with(sharedPref.edit()) {
       putString("originalVersion", BuildConfig.VERSION_NAME)
-      putBoolean("apkIsInstalled", false)
+      putBoolean("installChecked", false)
       apply()
     }
   }

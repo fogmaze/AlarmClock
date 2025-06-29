@@ -302,7 +302,7 @@ class AlarmsListActivity() : AppCompatActivity() {
   }
 
   private fun handleUpdate() {
-    val sharedPref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+    val sharedPref = getSharedPreferences("update", Context.MODE_PRIVATE)
     val origVersion = sharedPref.getString("originalVersion", "")
     val installChecked = sharedPref.getBoolean("installChecked", false)
     if (origVersion == "") return
