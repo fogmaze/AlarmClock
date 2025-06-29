@@ -309,6 +309,7 @@ class AlarmsListActivity() : AppCompatActivity() {
         putString("originalVersion", BuildConfig.VERSION_NAME)
         apply()
       }
+      return
     }
     if (origVersion != BuildConfig.VERSION_NAME) {
       with(sharedPref.edit()) {
