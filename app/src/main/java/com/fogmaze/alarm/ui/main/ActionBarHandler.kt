@@ -198,6 +198,7 @@ class ActionBarHandler(
   }
 
   private fun checkForUpdate() {
+    ApkUtil.deleteOldApk(activity, "${activity.externalCacheDir}/${AutoUpdate.APK_NAME}")
     AutoUpdate.getInstance().getOriginVersion { versionInfo ->
       if (versionInfo.name.isEmpty()) { // failed
         Handler(Looper.getMainLooper()).post {
@@ -217,7 +218,6 @@ class ActionBarHandler(
           AlertDialog.Builder(activity)
             .apply {
               setPositiveButton(android.R.string.ok) { _, _ ->
-                markNotInstalled(context)
                 DownloadManager.Builder(activity as Activity).run {
                   apkUrl(versionInfo.downloadURL)
                   apkName(AutoUpdate.APK_NAME)
@@ -245,14 +245,6 @@ class ActionBarHandler(
             .show()
         }
       }
-    }
-  }
-  private fun markNotInstalled(context: Context) {
-    val sharedPref = context.getSharedPreferences("update", Context.MODE_PRIVATE)
-    with(sharedPref.edit()) {
-      putString("originalVersion", BuildConfig.VERSION_NAME)
-      putBoolean("installChecked", false)
-      apply()
     }
   }
 }
