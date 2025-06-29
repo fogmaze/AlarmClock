@@ -18,6 +18,8 @@
 package com.fogmaze.alarm.ui.main
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
@@ -35,6 +37,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
+import com.azhon.appupdate.util.ApkUtil
 import com.fogmaze.alarm.BuildConfig
 import com.fogmaze.alarm.R
 import com.fogmaze.alarm.bootstrap.AlarmApplication
@@ -51,6 +54,7 @@ import com.fogmaze.alarm.ui.state.BackPresses
 import com.fogmaze.alarm.ui.state.EditedAlarm
 import com.fogmaze.alarm.ui.themes.DynamicThemeHandler
 import com.fogmaze.alarm.ui.toast.formatToast
+import com.fogmaze.alarm.util.AutoUpdate
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.disposables.Disposables
 import kotlinx.coroutines.flow.launchIn
@@ -121,6 +125,8 @@ class AlarmsListActivity() : AppCompatActivity() {
     }
 
     backPresses.onBackPressed(lifecycle) { finish() }
+
+    handleUpdate()
   }
 
   override fun onStart() {
@@ -292,6 +298,43 @@ class AlarmsListActivity() : AppCompatActivity() {
       putBoolean("isEdited", true)
       putByteArray("edited", ProtoBuf.encodeToByteArray(AlarmValue.serializer(), value))
       logger.trace { "Saved state $toWrite" }
+    }
+  }
+
+  private fun handleUpdate() {
+    val sharedPref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+    val origVersion = sharedPref.getString("originalVersion", "")
+    val installChecked = sharedPref.getBoolean("installChecked", false)
+    if (origVersion == "") return
+    if (installChecked) return
+    if (origVersion != BuildConfig.VERSION_NAME) {
+      with(sharedPref.edit()) {
+        putBoolean("installChecked", true)
+        apply()
+      }
+      ApkUtil.deleteOldApk(this, "$externalCacheDir/${AutoUpdate.APK_NAME}")
+      AlertDialog.Builder(this)
+        .apply {
+          setPositiveButton(android.R.string.ok) { _, _ -> }
+          setTitle(getString(R.string.update_success_title))
+          setMessage(getString(R.string.update_success_message))
+        }
+        .create()
+        .show()
+      return
+    }
+    // install failed
+    AlertDialog.Builder(this)
+      .apply {
+        setPositiveButton(android.R.string.ok) { _, _ -> }
+        setTitle(getString(R.string.update_fail_title))
+        setMessage(getString(R.string.update_fail_message))
+      }
+      .create()
+      .show()
+    with(sharedPref.edit()) {
+      putBoolean("installChecked", true)
+      apply()
     }
   }
 }

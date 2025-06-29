@@ -221,6 +221,9 @@ dependencies {
   implementation("org.tensorflow:tensorflow-lite-gpu:2.16.1")
   implementation("org.tensorflow:tensorflow-lite-select-tf-ops:2.16.1")
 
+  implementation("io.github.azhon:appupdate:4.3.6")
+  implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
 
   "newDevicesImplementation"("com.google.mediapipe:tasks-vision:latest.release")
 }

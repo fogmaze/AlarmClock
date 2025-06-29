@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
+import android.os.Handler
 import android.os.Looper
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
@@ -18,10 +19,14 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.core.view.MenuItemCompat
+import com.azhon.appupdate.manager.DownloadManager
+import com.azhon.appupdate.util.ApkUtil
 import com.fogmaze.alarm.BuildConfig
 import com.fogmaze.alarm.R
 import com.fogmaze.alarm.ui.settings.SettingsActivity
 import com.fogmaze.alarm.ui.state.BackPresses
+import com.fogmaze.alarm.util.AutoUpdate
+import com.fogmaze.alarm.util.versionIsNewerThan
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -107,6 +112,7 @@ class ActionBarHandler(
       R.id.menu_bugreport -> showBugreport()
       R.id.set_alarm_menu_delete_alarm -> deleteAlarm()
       R.id.menu_about -> showAbout()
+      R.id.menu_check_update -> checkForUpdate()
       android.R.id.home -> backPresses.backPressed("ActionBar")
     }
     return true
@@ -189,5 +195,64 @@ class ActionBarHandler(
         }
         .create()
         .show()
+  }
+
+  private fun checkForUpdate() {
+    AutoUpdate.getInstance().getOriginVersion { versionInfo ->
+      if (versionInfo.name.isEmpty()) { // failed
+        Handler(Looper.getMainLooper()).post {
+          AlertDialog.Builder(activity)
+            .apply {
+              setPositiveButton(android.R.string.ok) { _, _ -> }
+              setTitle(activity.getString(R.string.fail))
+              setMessage(activity.getString(R.string.check_update_failed))
+            }
+            .create()
+            .show()
+        }
+        return@getOriginVersion
+      }
+      if (versionInfo.name.versionIsNewerThan(BuildConfig.VERSION_NAME)) { // new version
+        Handler(Looper.getMainLooper()).post {
+          AlertDialog.Builder(activity)
+            .apply {
+              setPositiveButton(android.R.string.ok) { _, _ ->
+                markNotInstalled(context)
+                DownloadManager.Builder(activity as Activity).run {
+                  apkUrl(versionInfo.downloadURL)
+                  apkName(AutoUpdate.APK_NAME)
+                  smallIcon(R.mipmap.ic_launcher)
+                  build()
+                }.download()
+              }
+              setTitle(activity.getString(R.string.new_version_found_title))
+              setMessage(activity.getString(R.string.new_version_found_instruction))
+              setCancelable(true)
+              setNegativeButton(android.R.string.cancel) { _, _ -> }
+            }
+            .create()
+            .show()
+        }
+      } else { // no new version
+        Handler(Looper.getMainLooper()).post {
+          AlertDialog.Builder(activity)
+            .apply {
+              setPositiveButton(android.R.string.ok) { _, _ -> }
+              setTitle(activity.getString(R.string.no_new_version_found_title))
+              setMessage(activity.getString(R.string.no_new_version_found_instruction))
+            }
+            .create()
+            .show()
+        }
+      }
+    }
+  }
+  private fun markNotInstalled(context: Context) {
+    val sharedPref = context.getSharedPreferences("update", Context.MODE_PRIVATE)
+    with(sharedPref.edit()) {
+      putString("originalVersion", BuildConfig.VERSION_NAME)
+      putBoolean("apkIsInstalled", false)
+      apply()
+    }
   }
 }

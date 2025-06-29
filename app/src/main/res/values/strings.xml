@@ -265,4 +265,15 @@
     <string name="vision_tts_summary">Report status vocally in the waking process.</string>
     <string name="camera_test">Camera Test</string>
     <string name="vision_waking_hand_landmark_test_fail_message">The AI model just doesn’t get along with your device — no idea why it’s not working right. I feel sorry for you.</string>
+    <string name="check_for_update">Check for update</string>
+    <string name="check_update_failed">Update check somehow failed :(</string>
+    <string name="fail">Fail</string>
+    <string name="new_version_found_title">New version found!!!</string>
+    <string name="new_version_found_instruction">New version found. Click ok to download and install new version. Otherwise, you can click cancel to keep this version.</string>
+    <string name="no_new_version_found_title">Latest!!!</string>
+    <string name="no_new_version_found_instruction">This version is the latest for now. Thank you for clicking the update button.</string>
+    <string name="update_success_title">Successfully update to new version!!!</string>
+    <string name="update_success_message">Ah... Thanks for your time.</string>
+    <string name="update_fail_title">Self Update Failed</string>
+    <string name="update_fail_message">Update failed. You can try to update again or just enjoy the current version. Be sure the permission of install application is granted to this app. If you still cannot update, you can get the latest apk file on github and re-install by yourself. In this way, you probably won\'t lose your user data.</string>
 </resources>
