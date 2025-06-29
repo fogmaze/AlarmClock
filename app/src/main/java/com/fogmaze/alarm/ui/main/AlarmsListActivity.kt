@@ -304,12 +304,15 @@ class AlarmsListActivity() : AppCompatActivity() {
   private fun handleUpdate() {
     val sharedPref = getSharedPreferences("update", Context.MODE_PRIVATE)
     val origVersion = sharedPref.getString("originalVersion", "")
-    val installChecked = sharedPref.getBoolean("installChecked", false)
-    if (origVersion == "") return
-    if (installChecked) return
+    if (origVersion == "") {
+      with(sharedPref.edit()) {
+        putString("originalVersion", BuildConfig.VERSION_NAME)
+        apply()
+      }
+    }
     if (origVersion != BuildConfig.VERSION_NAME) {
       with(sharedPref.edit()) {
-        putBoolean("installChecked", true)
+        putString("originalVersion", BuildConfig.VERSION_NAME)
         apply()
       }
       ApkUtil.deleteOldApk(this, "$externalCacheDir/${AutoUpdate.APK_NAME}")
@@ -322,19 +325,6 @@ class AlarmsListActivity() : AppCompatActivity() {
         .create()
         .show()
       return
-    }
-    // install failed
-    AlertDialog.Builder(this)
-      .apply {
-        setPositiveButton(android.R.string.ok) { _, _ -> }
-        setTitle(getString(R.string.update_fail_title))
-        setMessage(getString(R.string.update_fail_message))
-      }
-      .create()
-      .show()
-    with(sharedPref.edit()) {
-      putBoolean("installChecked", true)
-      apply()
     }
   }
 }
