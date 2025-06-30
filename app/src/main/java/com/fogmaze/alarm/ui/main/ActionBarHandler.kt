@@ -26,6 +26,7 @@ import com.fogmaze.alarm.R
 import com.fogmaze.alarm.ui.settings.SettingsActivity
 import com.fogmaze.alarm.ui.state.BackPresses
 import com.fogmaze.alarm.util.AutoUpdate
+import com.fogmaze.alarm.util.cleanDownloadedApk
 import com.fogmaze.alarm.util.versionIsNewerThan
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -198,7 +199,7 @@ class ActionBarHandler(
   }
 
   private fun checkForUpdate() {
-    ApkUtil.deleteOldApk(activity, "${activity.externalCacheDir}/${AutoUpdate.APK_NAME}")
+    cleanDownloadedApk(activity)
     AutoUpdate.getInstance().getOriginVersion { versionInfo ->
       if (versionInfo.name.isEmpty()) { // failed
         Handler(Looper.getMainLooper()).post {

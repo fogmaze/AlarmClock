@@ -55,6 +55,7 @@ import com.fogmaze.alarm.ui.state.EditedAlarm
 import com.fogmaze.alarm.ui.themes.DynamicThemeHandler
 import com.fogmaze.alarm.ui.toast.formatToast
 import com.fogmaze.alarm.util.AutoUpdate
+import com.fogmaze.alarm.util.cleanDownloadedApk
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.disposables.Disposables
 import kotlinx.coroutines.flow.launchIn
@@ -302,7 +303,6 @@ class AlarmsListActivity() : AppCompatActivity() {
   }
 
   private fun handleUpdate() {
-    cleanDownloadedApk()
     val sharedPref = getSharedPreferences("update", Context.MODE_PRIVATE)
     val origVersion = sharedPref.getString("originalVersion", "")
     if (origVersion == "") {
@@ -317,7 +317,7 @@ class AlarmsListActivity() : AppCompatActivity() {
         putString("originalVersion", BuildConfig.VERSION_NAME)
         apply()
       }
-      ApkUtil.deleteOldApk(this, "$externalCacheDir/${AutoUpdate.APK_NAME}")
+      cleanDownloadedApk(this)
       AlertDialog.Builder(this)
         .apply {
           setPositiveButton(android.R.string.ok) { _, _ -> }
@@ -329,24 +329,4 @@ class AlarmsListActivity() : AppCompatActivity() {
       return
     }
   }
-
-  fun cleanDownloadedApk() {
-    val files = cacheDir.listFiles()
-    if (files.isNullOrEmpty()) {
-      logger.info {"No cache files found. in cacheDir" }
-    } else {
-      for (file in files) {
-        logger.info { "File: ${file.name}, Size: ${file.length()} bytes in cacheDir" }
-      }
-    }
-    val filesExt = externalCacheDir?.listFiles()
-    if (filesExt.isNullOrEmpty()) {
-      logger.info {"No cache files found. in externalCacheDir" }
-    } else {
-      for (file in filesExt) {
-        logger.info { "File: ${file.name}, Size: ${file.length()} bytes in externalCacheDir" }
-      }
-    }
-  }
-
 }
