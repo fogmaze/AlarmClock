@@ -66,5 +66,3 @@ fun String.versionIsNewerThan(other: String): Boolean {
   }
   return false
 }
-
-

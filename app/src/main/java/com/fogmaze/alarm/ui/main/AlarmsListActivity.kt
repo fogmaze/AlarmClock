@@ -328,4 +328,24 @@ class AlarmsListActivity() : AppCompatActivity() {
       return
     }
   }
+
+  fun cleanDownloadedApk() {
+    val files = cacheDir.listFiles()
+    if (files.isNullOrEmpty()) {
+      logger.info {"No cache files found. in cacheDir" }
+    } else {
+      for (file in files) {
+        logger.info { "File: ${file.name}, Size: ${file.length()} bytes in cacheDir" }
+      }
+    }
+    val filesExt = externalCacheDir?.listFiles()
+    if (filesExt.isNullOrEmpty()) {
+      logger.info {"No cache files found. in externalCacheDir" }
+    } else {
+      for (file in filesExt) {
+        logger.info { "File: ${file.name}, Size: ${file.length()} bytes in externalCacheDir" }
+      }
+    }
+  }
+
 }
