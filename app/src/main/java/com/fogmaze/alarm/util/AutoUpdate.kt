@@ -1,15 +1,16 @@
+/***
+ * MIT License
+ * Copyright (c) 2025 Andy Chen
+ * See LICENSE file for full license text.
+ */
 package com.fogmaze.alarm.util
 
-import android.app.AlertDialog
 import android.content.Context
-import com.fogmaze.alarm.R
 import com.fogmaze.alarm.bootstrap.globalLogger
-import com.fogmaze.alarm.logger.Logger
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONObject
 import java.io.File
-import java.util.concurrent.Future
 
 data class VersionInfo(val name: String, val downloadURL: String)
 

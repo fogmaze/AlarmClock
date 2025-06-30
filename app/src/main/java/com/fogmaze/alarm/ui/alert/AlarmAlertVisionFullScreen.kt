@@ -1,3 +1,8 @@
+/***
+ * MIT License
+ * Copyright (c) 2025 Andy Chen
+ * See LICENSE file for full license text.
+ */
 package com.fogmaze.alarm.ui.alert
 
 import android.content.Intent

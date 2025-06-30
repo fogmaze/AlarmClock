@@ -1,4 +1,3 @@
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![GitHub release](https://img.shields.io/github/v/release/fogmaze/AlarmClock)](https://github.com/fogmaze/AlarmClock/releases/latest)
 
 # Lazy alarm clock
@@ -25,5 +24,5 @@ After downloading the .apk file, don't forget to install it by simply open it. W
 </p>
 
 # License
-Apache 2.0
+[MIT License](https://github.com/fogmaze/AlarmClock/blob/main/LICENSE)
 
