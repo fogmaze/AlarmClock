@@ -1,10 +1,14 @@
 package com.fogmaze.alarm.util
 
+import android.app.AlertDialog
+import android.content.Context
+import com.fogmaze.alarm.R
 import com.fogmaze.alarm.bootstrap.globalLogger
 import com.fogmaze.alarm.logger.Logger
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONObject
+import java.io.File
 import java.util.concurrent.Future
 
 data class VersionInfo(val name: String, val downloadURL: String)
@@ -65,4 +69,28 @@ fun String.versionIsNewerThan(other: String): Boolean {
     }
   }
   return false
+}
+
+fun cleanDownloadedApk(context: Context) {
+  val apkFile = File(context.externalCacheDir, AutoUpdate.APK_NAME)
+  if (apkFile.exists()) {
+    val deleted = apkFile.delete()
+    if (deleted) {
+      message("Deleted old apk", context)
+    } else {
+      message("Failed to delete old apk", context)
+    }
+  } else
+    message("No old apk to delete", context)
+}
+
+fun message(msg: String, context: Context) {
+  AlertDialog.Builder(context)
+    .apply {
+      setPositiveButton(android.R.string.ok) { _, _ -> }
+      setTitle("msg")
+      setMessage(msg)
+    }
+    .create()
+    .show()
 }
