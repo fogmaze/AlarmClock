@@ -5,6 +5,7 @@
 Lazy Alarm Clock is a fork of Simple Alarm Clock. Since now it's not that simple so I changed the name.
 
 
+[Visit Simple Alarm Clock](https://github.com/yuriykulikov/AlarmClock)
 # New features
  - AI-Based Waking Process: Utilizing your device’s rear camera, the system uses advanced AI to detect your head, ensuring you’re actually awake after the alarm goes off. It also supports remote gesture control, so you can silence the alarm without getting out of bed.
  - Must-wake mode that will maximize the alarm volume after a given time.
