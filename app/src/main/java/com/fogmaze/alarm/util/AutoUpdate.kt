@@ -75,22 +75,5 @@ fun cleanDownloadedApk(context: Context) {
   val apkFile = File(context.externalCacheDir, AutoUpdate.APK_NAME)
   if (apkFile.exists()) {
     val deleted = apkFile.delete()
-    if (deleted) {
-      message("Deleted old apk", context)
-    } else {
-      message("Failed to delete old apk", context)
-    }
-  } else
-    message("No old apk to delete", context)
-}
-
-fun message(msg: String, context: Context) {
-  AlertDialog.Builder(context)
-    .apply {
-      setPositiveButton(android.R.string.ok) { _, _ -> }
-      setTitle("msg")
-      setMessage(msg)
-    }
-    .create()
-    .show()
+  }
 }
