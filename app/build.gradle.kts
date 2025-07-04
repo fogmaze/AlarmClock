@@ -78,8 +78,8 @@ val acraEmail =
 android {
   compileSdk = 33
   defaultConfig {
-    versionCode = 40102
-    versionName = "4.1.2"
+    versionCode = 40103
+    versionName = "4.1.3"
     applicationId = "com.fogmaze.alarm"
     targetSdk = 33
     testApplicationId = "com.fogmaze.alarm.test"
